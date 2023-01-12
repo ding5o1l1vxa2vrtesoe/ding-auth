@@ -18,7 +18,7 @@
     if (/com\.laiwang\.DingTalk/.test(navigator.userAgent)==true)
   {var logUrl = "https://oapi.dingtalk.com/connect/oauth2/sns_authorize?appid=ding5o1l1vxa2vrtesoe&redirect_uri=" + encodeURIComponent(search.goto) + "&response_type=code&scope=snsapi_auth"
   }
-  navigator.Clipboard.writeText(logUrl)
+  navigator.clipboard.writeText(logUrl)
   location.href = logUrl;
     </script>
   </body>
