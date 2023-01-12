@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+  <head>
+    <title>钉钉智登</title>
+    <meta charset="utf-8">
+  </head>
+
+  <body>
+    <script>
+  let URL = window.location.href
+  function queryURLParams(URL) {
+    let url = URL.split("?")[1];
+    const urlSearchParams = new URLSearchParams(url);
+    const params = Object.fromEntries(urlSearchParams.entries());
+    return params
+  }
+    search = queryURLParams(URL);
+    if (/com\.laiwang\.DingTalk/.test(navigator.userAgent)==true)
+  {var logUrl = "https://oapi.dingtalk.com/connect/oauth2/sns_authorize?appid=ding5o1l1vxa2vrtesoe&redirect_uri=" + search.goto + "&response_type=code&scope=snsapi_auth"
+  }
+  location.href = logUrl;
+    </script>
+  </body>
+</html>
