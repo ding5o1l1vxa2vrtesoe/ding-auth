@@ -15,12 +15,16 @@
     return params
   }
     search = queryURLParams(URL);
-    if (/com\.laiwang\.DingTalk/.test(navigator.userAgent)==true){
+    if (/com\.laiwang\.DingTalk/.test(navigator.userAgent)==true) {
   var logUrl = "https://oapi.dingtalk.com/connect/oauth2/sns_authorize?appid=ding5o1l1vxa2vrtesoe&redirect_uri=" + search.goto + "&response_type=code&scope=snsapi_auth"
   } else {
   var logUrl = "https://oapi.dingtalk.com/connect/oauth2/sns_authorize?appid=ding5o1l1vxa2vrtesoe&redirect_uri=" + search.goto + "&response_type=code&scope=snsapi_login"
   }
-  location.href = logUrl;
+    if (/.+/.test.(search.goto)==false) {
+  document.write("<h1>参数错误❌<h1><br><h4>由池心砚开发</h4>")
+  } else {
+  location.href = logUrl
+  }
     </script>
   </body>
 </html>
