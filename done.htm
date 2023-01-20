@@ -1,0 +1,40 @@
+<html>
+  <head>
+    <title>钉钉智登 - 池心砚</title>
+  </head>
+  <script>
+
+  function checkUrlEncoding(query) {
+    var GoToURl;
+    if (decodeURIComponent(query) === query) {
+      GoToURl = query;
+    } else {
+      GoToURl = encodeURIComponent(query);
+    }
+    if(query) {
+      return GoToURl;
+    } else {
+      document.getElementsByTagName('h1')[0].innerHTML = 'URL中的参数错误❌';
+      return false;
+    }
+  }
+
+  function snsCheck(){
+    if(navigator.userAgent.indexOf("com.laiwang.DingTalk") != -1) {
+      var sns = "sns=auth";
+      return sns;
+    } else {
+      var sns = "sns=login";
+      return sns;
+    }
+  }
+
+  setTimeout(function(){ }, 1000);
+
+    window.location.href = "https://oapi.dingtalk.com/connect/oauth2/sns_authorize?appid=ding5o1l1vxa2vrtesoe&redirect_uri=" + GoToURl + "&response_type=code&scope=snsapi_" + sns
+  </script>
+  <body>
+      <center><h1>钉钉智登 - 池心砚</h1></center>
+      <center><a href="dingtalk://dingtalkclient/page/link?url=https%3A%2F%2Fh5.dingtalk.com%2Fzproject%2Fprofile.html%3Ffr_source%3D13%26profile%3D%2540kgDOC1rsiw%26cardToken%3D366cf67b58&pc_slide=true">添加我的钉钉账号</a></center>
+  </body>
+</html>
