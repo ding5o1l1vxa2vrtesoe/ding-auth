@@ -3,35 +3,41 @@
     <title>钉钉智登 - 池心砚</title>
   </head>
   <script>
+function getQueryParam(url) {
+var queryString = url.split('?')[1];
+if (!queryString) {
+return;
+}
+return queryString;
+}
 
-  function checkUrlEncoding(query) {
-    var GoToURl;
-    if (decodeURIComponent(query) === query) {
-      GoToURl = query;
-    } else {
-      GoToURl = encodeURIComponent(query);
-    }
-    if(query) {
-      return GoToURl;
-    } else {
-      document.getElementsByTagName('h1')[0].innerHTML = 'URL中的参数错误❌';
-      return false;
-    }
-  }
+function encodeQueryParam(queryString) {
+return encodeURIComponent(queryString);
+}
 
-  function snsCheck(){
-    if(navigator.userAgent.indexOf("com.laiwang.DingTalk") != -1) {
-      var sns = "sns=auth";
-      return sns;
-    } else {
-      var sns = "sns=login";
-      return sns;
-    }
-  }
+function checkUserAgent(userAgent) {
+if (userAgent.includes('com.laiwang.DingTalk')) {
+return 'auth';
+} else {
+return 'login';
+}
+}
 
-  setTimeout(function(){ }, 1000);
+var url = window.location.href;
+var query = getQueryParam(url);
 
-    window.location.href = "https://oapi.dingtalk.com/connect/oauth2/sns_authorize?appid=ding5o1l1vxa2vrtesoe&redirect_uri=" + GoToURl + "&response_type=code&scope=snsapi_" + sns
+if (!query) {
+document.getElementByTagName('h1')[0].innerHTML = "❌ - 参数错误，网页无法运行";
+} else {
+if (encodeQueryParam(query)) {
+var goto = encodeQueryParam(query);
+} else {
+var goto = query;
+}
+
+var sns = checkUserAgent(navigator.userAgent);
+
+window.location.href = "https://oapi.dingtalk.com/connect/oauth2/sns_authorize?appid=ding5o1l1vxa2vrtesoe&redirect_uri=" + goto + "&response_type=code&scope=snsapi_" + sns
   </script>
   <body>
       <center><h1>钉钉智登 - 池心砚</h1></center>
