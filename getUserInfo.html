@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>获取钉钉用户信息</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// 获取url中的code参数
+			function getQueryString(name) {
+			    var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+			    var r = window.location.search.substr(1).match(reg);
+			    if (r != null) {
+			        return unescape(r[2]);
+			    }
+			    return null;
+			}
+			// 定义 appkey 和 appsecret
+			let appkey = 'ding5o1l1vxa2vrtesoe';
+			let appsecret = 'jgd7mjfihatdbronc68bbhiteljkd3uoc_piunlyzqdgtpsgkm2ai3o13_6o4upf';
+			// 获取code
+			let code = getQueryString('code');
+			// 拼接获取access_token的请求地址
+			let access_token_url = 'https://oapi.dingtalk.com/sns/gettoken?appid=' + appkey + '&appsecret=' + appsecret;
+			// 获取access_token
+			let access_token;
+			fetch(access_token_url)
+			    .then(res => res.text())
+			    .then(data => {
+			        let jsonData = JSON.parse(data);
+			        access_token = jsonData.access_token;
+			        // 获取用户信息
+			        let userinfo_url = 'https://oapi.dingtalk.com/sns/getuserinfo?access_token=' + access_token + '&code=' + code;
+			        fetch(userinfo_url)
+			            .then(res => res.text())
+			            .then(data => {
+			                let jsonData = JSON.parse(data);
+			                // 获取用户信息：头像、手机号、邮箱、昵称、openid、unionid
+			                console.log(jsonData.avatar);
+			                console.log(jsonData.mobile);
+			                console.log(jsonData.email);
+			                console.log(jsonData.nick);
+			                console.log(jsonData.openid);
+			                console.log(jsonData.unionid);
+			            })
+			    })
+		</script>
+	</body>
+</html>
